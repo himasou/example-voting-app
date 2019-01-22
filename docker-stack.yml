@@ -24,7 +24,7 @@ services:
       placement:
         constraints: [node.role == manager]
   vote:
-    image: nigelpoulton/vote:vote
+    image: himasou/vote:vote
     ports:
       - 5000:80
     networks:
@@ -38,7 +38,7 @@ services:
       restart_policy:
         condition: on-failure
   result:
-    image: nigelpoulton/vote:res
+    image: himasou/vote:res
     ports:
       - 5001:80
     networks:
@@ -54,7 +54,7 @@ services:
         condition: on-failure
 
   worker:
-    image: nigelpoulton/vote:wrkr
+    image: himasou/vote:wrkr
     networks:
       - frontend
       - backend
@@ -71,7 +71,7 @@ services:
         constraints: [node.role == manager]
 
   visualizer:
-    image: nigelpoulton/vote:viz
+    image: himasou/vote:viz
     ports:
       - "8080:8080"
     stop_grace_period: 1m30s

@@ -1,0 +1,37 @@
+monitoring
+
+prometheus
+scrape_configs:
+
+  - job_name: 'netfx_app'
+    metrics_path: /metrics/
+    static_configs:
+      - targets: ['netfx:5056']
+
+  - job_name: 'docker_managers'
+    scrape_interval: 15s
+    metrics_path: /metrics
+    static_configs:
+      - targets: ['host.docker.internal:50501']
+
+override file:
+
+  - job_name: 'netfx_app'
+    metrics_path: /metrics/
+    dns_sd_configs:
+      - names:
+        - tasks.netfx
+        type: a
+        port: 50506
+
+example at dockersamples/aspnet-montoring
+
+dns_sd_configs
+
+run time metrics
+application metrics
+docker metrics
+dashboard grafana
+
+
+
